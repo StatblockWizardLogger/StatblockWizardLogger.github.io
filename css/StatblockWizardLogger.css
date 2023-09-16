@@ -1,0 +1,283 @@
+/* Copyright 2023 StatblockWizard */
+/* for all devices */
+:root {
+    --fore: #020202;
+    --back: #fdfdfd;
+    --alternateback: #dfdfdf;
+    --key: #a00000;
+    --selectedback: pink;
+    --selectedfore: darkblue;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fore: #fdfdfd;
+        --back: #404040;
+        --alternateback: #020202;
+        --key: #d00000;
+        --selectedback: pink;
+        --selectedfore: darkblue;
+    }
+        
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size-adjust: inherit;
+    text-align: left;
+    text-align-last: left;
+    color: var(--fore);
+    background-color: var(--back);
+    width: 100%;
+}
+
+div#Header {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.appinfo {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+img.logo {
+    vertical-align: middle;
+}
+
+.Statblock {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.intro {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: var(--alternateback);
+    border: 2px solid var(--key);
+    border-radius: 2%;
+    vertical-align: middle;
+    text-align: center;
+    text-align-last: center;
+}
+
+div#dropzone {
+    display: none;
+}
+
+.appname,
+.appname:visited,
+.appname:active,
+.appname:link {
+    color: var(--key);
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.hints {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.selectable:hover {
+    background-color: var(--selectedback);
+    color: var(--selectedfore);
+}
+
+textarea.textinput {
+    display: block;
+    width: 99%;
+    font-family: inherit;
+    font-size: medium;
+}
+
+input[type="file"],
+input[disabled] {
+    display: none;
+}
+
+/* fix because adding a div breaks the StatblockWizard css */
+.StatblockWizard-sectionheader+div>.StatblockWizard-line {
+    margin-top: 2px;
+}
+
+/* scrollbar control */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+div#legalpage {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 100%;
+    }
+
+    div#Info {
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-bottom: 1px solid var(--key);
+    }
+
+    div#Header {
+        width: 100%;
+        height: 20mm;
+        overflow: hidden;
+    }
+
+    div#Viewer {
+        width: 100%;
+        overflow: auto;
+    }
+
+    div#WorkArea {
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    div#Log {
+        max-height: calc(99vh - 40mm);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    div#Controls {
+        width: calc(100% - 20px);
+        font-size-adjust: none;
+        overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    input[type="button"] {
+        font-size: x-large;
+    }
+
+    .Statblock {
+        max-width: 700px;
+    }
+
+    .intro {
+        width: 80%;
+    }
+
+    .hints {
+        font-size: medium;
+    }
+
+    .tooling {
+        float: right;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    body {
+        overflow: hidden;
+        height: 100%;
+    }
+
+    div#Info {
+        float: left;
+        width: 710px;
+        height: 99vh;
+        overflow: hidden;
+        border-right: 1px solid var(--key);
+        border-bottom: 0;
+    }
+
+    div#Header {
+        width: 700px;
+        height: 20mm;
+        overflow: hidden;
+    }
+
+    div#Viewer {
+        width: 700px;
+        height: calc(99vh - 20mm);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    div#dropzone {
+        display: block;
+    }
+
+    div#WorkArea {
+        position: absolute;
+        left: 720px;
+        height: 99vh;
+        width: calc(99vw - 720px);
+        min-width: 350px;
+        overflow: hidden;
+    }
+
+    div#Log {
+        height: calc(99vh - 40mm);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    div#Controls {
+        height: 40mm;
+        overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    input[type="button"] {
+        font-size: 16px;
+    }
+
+    .Statblock {
+        max-width: 700px;
+    }
+
+    .intro {
+        width: 100mm;
+    }
+
+    .hints {
+        font-size: small;
+    }
+
+    .tooling {
+        float: right;
+    }
+}
