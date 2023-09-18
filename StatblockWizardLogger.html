@@ -13,9 +13,8 @@
 
 <body>
     <noscript>
-        <p>This app needs JavaScript to be enabled. It seems this is not the case in this browser, so sadly the app will
-            not work now.</p>
-        <p>&copy; 2023 StatblockWizard (StatblockWizard@gmail.com) All rights reserved.</p>
+        <p>This app needs JavaScript to be enabled. It seems this is not the case in this browser, so sadly the app will not work now.</p>
+        <p>&copy;2023 StatblockWizard (StatblockWizard@gmail.com) All rights reserved.</p>
     </noscript>
     <div id="Info">
         <div id="Header">
@@ -27,42 +26,31 @@
         <div id="Viewer">
             <div id="Statblock" class="Statblock">
                 <div id="dropzone" class="intro">
-                    <p>Please, drop a <a class="appname" target="_blank" title="Link to the StatblockWizard tool" href="https://statblockwizard.github.io">StatblockWizard</a> SVG file here!</p>
+                    <p>Please, drop a <a class="appname" target="_blank" title="Link to the StatblockWizard tool"
+                            href="https://statblockwizard.github.io">StatblockWizard</a> SVG file here!</p>
                 </div>
-                <p>Welcome to <span class="appname">StatblockWizard Logger</span>, the tool that allows you to
-                    actively use your <a class="appname" target="_blank" title="Link to the StatblockWizard tool" href="https://statblockwizard.github.io">StatblockWizard</a> statblocks to log your Role Playing Game sessions.</p>
-                <p>Once you upload a StatblockWizard SVG file, this tool will analyze it and register
-                    its content as actions that the character can do - and that you can log. Just hovering your
-                    mouse pointer over an action will highlight it. Sometimes that will be an entire section, but
-                    sometimes only a small part will be highlighted, like a spell name in a spell list. Click the
-                    highlighted area and the action will be added to the Log.</p>
-                <p>Apart from actions that are in the Statblock, you will often want to add text manually. You can do
-                    this in the editable text area. Clicking the <strong>log</strong> button will add the typed text to the line.</p>
-                <p>The app will also get your character's hit points from the statblock, and keep track of them whenever
-                    your character gets damage, healing, or temporary hit points. See the 'hints' text next to the text
-                    input. By the way, that hints text also hints😉 at formatting options!</p>
-                <p class="appinfo"><input type="button" value="show a demo log session" onclick="javascript:{restoreFromLog(demoData());setFocus();}" /></p>
+                <p>Welcome to <span class="appname">StatblockWizard Logger</span>, the tool that lets you use your StatblockWizard statblocks for logging your Role Playing Game sessions.</p>
+                <p></p>
+                <p>Upload a <a class="appname" target="_blank" title="Link to the StatblockWizard tool"
+                    href="https://statblockwizard.github.io">StatblockWizard</a> SVG file and this tool will analyze it and register its content as actions that the character can do - and that you can log.</p>
+                <p>Hover your pointer over one of these actions and it will be highlighted. Sometimes an entire section, sometimes just a small part like a spell name. Click the highlighted area to add this action to the Log.</p>
+                <p>Manually add log entries in the editable text area. Click the <strong>log</strong> button to register the typed text.</p>
+                <p></p>
+                <p><span class="appname">StatblockWizard Logger</span> will also get your character's hit points from the statblock, and keep track of them whenever your character gets damage, healing, or temporary hit points.</p>
+                <p class="appinfo"><input type="button" value="show a demo log session"
+                        onclick="javascript:{restoreFromLog(demoData());setFocus();}" /></p>
                 <h3>Other buttons:</h3>
                 <ul>
-                    <li><strong>download.</strong>&nbsp;This downloads the current log to a .statblockwizard.log.html file. The file contains the
-                        statblock, the current status of your character, and the logged events. You can print or store
-                        this file for your archive.</li>
-                    <li><strong>upload.</strong>&nbsp;Files you downloaded before can be uploaded later - and this will bring you right back at the
-                        place where you were. <em>And</em> it will temporarily enable the 'new session using current
-                        data' button!</li>
-                    <li><strong>open statblock.</strong>&nbsp;Continue your current log session using a different statblock. This is the same as drag &
-                        dropping a statblock.</li>
-                    <li><strong>restore last session. (*)</strong>&nbsp;Even if you did not download the log, <span class="appname">StatblockWizard Logger</span>
-                        will have stored the your last session in your browser's local storage. Selecting this action
-                        will bring you right back. Remember though that sometimes browser data gets cleared, and the
-                        session will no longer be available in this way.</li>
-                    <li><strong>new session using current data. (*)</strong>&nbsp;This action will clear the log text, but retain your character's status. Also, it will increase
-                        the session number by 1 - so you can directly continue where you left off.</li>
+                    <li><strong>download.</strong> Get the current log in a .statblockwizard.log.html file.</li>
+                    <li><strong>upload.</strong> Select a downloaded log file to bring you right back where you were.</li>
+                    <li><strong>open statblock.</strong> Continue the session using a different statblock. If supported by your device, you can instead drag a statblock to the box above.</li>
+                    <li><strong>restore last session. (*)</strong> <span class="appname">StatblockWizard Logger</span> stores your last session in your browser's local storage. This action will restore it for you. Don't rely on this too much &mdash; browser data gets cleared sometimes by external factors.</li>
+                    <li><strong>new session using current data. (*)</strong> Start a new log having a new number, but retain your character's status.</li>
                 </ul>
-                <p>(*) indicates that these actions are only available at appropriate times. For example, you cannot
-                    restore a session unless you have saved the current session (or you just opened/refreshed the app).
-                </p>
-                <a class="appinfo" target="_self" href="StatblockWizardLoggerLegal.html" title="legal information">Legal information</a>
+                <p>(*): these actions are only available at appropriate times. For example, you can only restore a session right after you saved the current one, or when you just opened the app.</p>
+                <p></p>
+                <p class="appinfo"><a target="_self" href="StatblockWizardLoggerLegal.html"
+                        title="Legal information">Legal information</a></p>
             </div>
         </div>
     </div>
