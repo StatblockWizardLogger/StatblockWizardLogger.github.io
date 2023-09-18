@@ -6,11 +6,11 @@ class DB {
     constructor() {
     }
 
-    setkeyvalue(key, value) {
+    setKeyValue(key, value) {
         window.localStorage.setItem(key, JSON.stringify(value))
     }
 
-    getkeyvalue(key) {
+    getKeyValue(key) {
         let v = window.localStorage.getItem(key);
         if (v) return (JSON.parse(v))
     }
@@ -27,7 +27,7 @@ class DB {
             key = window.localStorage.key(i);
             if (key) {
                 items[i * 2] = key
-                items[i * 2 + 1] = this.getkeyvalue(key)
+                items[i * 2 + 1] = this.getKeyValue(key)
             }
         }
         return items
