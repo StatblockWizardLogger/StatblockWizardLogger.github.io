@@ -65,11 +65,6 @@ img.logo {
     text-align-last: center;
 }
 
-div#dropzone {
-    display: none;
-}
-
-
 a,
 a:visited,
 a:active,
@@ -246,10 +241,6 @@ div#legalpage {
         height: calc(99vh - 20mm);
         overflow-x: hidden;
         overflow-y: auto;
-    }
-
-    div#dropzone {
-        display: block;
     }
 
     div#WorkArea {
