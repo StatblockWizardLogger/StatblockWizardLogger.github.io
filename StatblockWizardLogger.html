@@ -25,10 +25,10 @@
         </div>
         <div id="Viewer">
             <div id="Statblock" class="Statblock">
-                <div id="dropzone" class="intro">
+                <!-- <div id="dropzone" class="intro">
                     <p>Please, drop a <a class="appname" target="_blank" title="Link to the StatblockWizard tool"
                             href="https://statblockwizard.github.io">StatblockWizard</a> SVG file here!</p>
-                </div>
+                </div> -->
                 <p>Welcome to <span class="appname">StatblockWizard Logger</span>, the tool that lets you use your StatblockWizard statblocks for logging your Role Playing Game sessions.</p>
                 <p></p>
                 <p>Upload a <a class="appname" target="_blank" title="Link to the StatblockWizard tool"
@@ -37,12 +37,12 @@
                 <p></p>
                 <p><span class="appname">StatblockWizard Logger</span> will also get your character's hit points from the statblock, and keep track of them whenever your character gets damage, healing, or temporary hit points.</p>
                 <p class="appinfo"><input type="button" value="show a demo log session"
-                        onclick="javascript:{restoreFromLog(demoData());setFocus();}" /></p>
+                        onclick="javascript:{processHTMLFile(demoData());setFocus();}" /></p>
                 <h3>Other buttons:</h3>
                 <ul>
                     <li><strong>download.</strong> Get the current log in a .statblockwizard.log.html file.</li>
                     <li><strong>upload.</strong> Select a downloaded log file to bring you right back where you were.</li>
-                    <li><strong>open statblock.</strong> Continue the session using a different statblock. If supported by your device, you can instead drag a statblock to the box above.</li>
+                    <li><strong>open statblock.</strong> Continue the session using a different statblock.</li>
                     <li><strong>restore last session. (*)</strong> <span class="appname">StatblockWizard Logger</span> stores your last session in your browser's local storage. This action will restore it for you. Don't rely on this too much &mdash; browser data gets cleared sometimes by external factors.</li>
                     <li><strong>new session using current data. (*)</strong> Start a new log having a new number, but retain your character's status.</li>
                 </ul>
