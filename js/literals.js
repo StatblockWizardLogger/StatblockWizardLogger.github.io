@@ -54,11 +54,11 @@ div#Log{font-size:16px;}
 .italic{font-style:italic;}
 </style></head><body><h1 class="appinfo">StatblockWizard Logger Log #1 Transcript</h1><div id="Statblock" class="appinfo">
 
-<svg xmlns="http://www.w3.org/2000/svg" width="683" height="634" style="font-size:16px;">
+<svg xmlns="http://www.w3.org/2000/svg" width="683" height="636" style="font-size:16px;">
 <foreignObject 
     style="
         width:683px;
-        height:634px;
+        height:636px;
         transform:scale(1);
     "
 ><div xmlns="http://www.w3.org/1999/xhtml" style="border:0;padding:0;"><style>
@@ -414,10 +414,10 @@ border-bottom: 1px var(--StatblockWizardscreenborder) solid;
 <p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">new session using current data.</span><span>Start a new log having a new number, but retain your character's status.</span></p>
 </div>
 <div class="StatblockWizard-section StatblockWizard-reactions"><div class="StatblockWizard-sectionheader">Reactions</div>
-<p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">Themes.</span><span><span class="appname">StatblockWizard Logger</span> supports light and dark themes, following your browser setting.</span></p>
+<p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">Themes. (*)</span><span><span class="appname">StatblockWizard Logger</span> supports light and dark themes, following your browser setting.</span></p>
 <p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">Hover (*).</span><span>Each button in this app shows extra information if you hover your mouse pointer over it.</span></p>
 <p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">Shortcut Keys (*, **).</span><span>You can use a keyboard to select action buttons. The Hover feature shows the appropriate keys.</span></p>
-<p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">Drag &amp; Drop (*).</span><span>You can drop a <span class="appname">StatblockWizard</span> SVG file on the drop-box to upload it.</span></p>
+<p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">Drag &amp; Drop (*).</span><span>Instead of uploading, you can drop a supported file onto to the app window to use it — any .statblockwizard.svg file or .statblockwizard.log.html file will be accepted.</span></p>
 <p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">*</span><span><span class="appname">StatblockWizard Logger's</span> reactions only work if supported by your device and browser.</span></p>
 <p class="StatblockWizard-line StatblockWizard-namedstring"><span class="StatblockWizard-keyword">**</span><span>Shortcut keys depend on your browser. Usually you need to press a key combination, like Alt+key or Control+Option+key</span></p>
 </div>

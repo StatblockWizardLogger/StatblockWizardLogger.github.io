@@ -18,14 +18,14 @@ let restoring = false;
 //#region initialize
 function startLogger() {
     if (canStartLogger()) {
-        // allow dropping of svg file
-        viewer.addEventListener('dragover', (event) => {
+        // allow dropping of .statblockwizard.svg or .statblockwizard.log.html file
+        window.addEventListener('dragover', (event) => {
             event.preventDefault();
         });
-        viewer.addEventListener('drop', (event) => {
+        window.addEventListener('drop', (event) => {
             if (event.dataTransfer.files.length == 1) {
                 var fr = new FileReader();
-                fr.onload = function () { processSVGFile(fr.result) }
+                fr.onload = function () { processSVGorHTMLfile(fr.result) }
                 fr.readAsText(event.dataTransfer.files[0]);
             }
             event.preventDefault();
@@ -62,6 +62,14 @@ function createControls() {
 function setFocus() {
     let t = document.getElementById('textinput');
     if (t) { t.focus(); };
+}
+
+function processSVGorHTMLfile(fileContent) {
+    let svg = fileContent.indexOf('<svg ');
+    let html = fileContent.indexOf('<html ');
+
+    if (svg >= 0 && html < 0) processSVGFile(fileContent);
+    if (svg > html && html >= 0) processHTMLFile(fileContent);
 }
 //#endregion initialize
 
@@ -290,7 +298,7 @@ function newClickableDiv(caption, keyword) {
     d.classList.add('selectable');
     // D.id = CreateID('click', NewClickID());
     d.addEventListener('click', () => {
-        addLogLine((caption != keyword) ? `${caption}: ${keyword.replace(':','.')}` : `${caption}.`);
+        addLogLine((caption != keyword) ? `${caption}: ${keyword.replace(':', '.')}` : `${caption}.`);
     });
     return (d);
 }
@@ -598,7 +606,7 @@ function addControlsOpenLog(controls) {
     if (selhtml) {
         selhtml.addEventListener('change', function () {
             var fr = new FileReader();
-            fr.onload = function () { restoreFromLog(fr.result) }
+            fr.onload = function () { processHTMLFile(fr.result) }
             if (this.files[0] != '') {
                 fr.readAsText(this.files[0])
                 this.value = ''
@@ -732,19 +740,19 @@ function restoreLastSession() {
     enableNewSessionButton();
 }
 
-function restoreFromLog(htmlfilecontent) {
+function processHTMLFile(HTMLFileContent) {
     restoring = true;
     resetLog();
-    let start = htmlfilecontent.indexOf('<svg');
-    let end = htmlfilecontent.indexOf('</svg>') + 6;
-    let filecontent = htmlfilecontent.substring(start, end);
+    let start = HTMLFileContent.indexOf('<svg');
+    let end = HTMLFileContent.indexOf('</svg>') + 6;
+    let fileContent = HTMLFileContent.substring(start, end);
 
-    start = htmlfilecontent.indexOf('<div id="Log"');
-    end = htmlfilecontent.indexOf('<!--endlog-->');
-    let logcontent = htmlfilecontent.substring(start, end);
+    start = HTMLFileContent.indexOf('<div id="Log"');
+    end = HTMLFileContent.indexOf('<!--endlog-->');
+    let logContent = HTMLFileContent.substring(start, end);
 
-    db.setKeyValue('statblock', filecontent);
-    db.setKeyValue('log', logcontent);
+    db.setKeyValue('statblock', fileContent);
+    db.setKeyValue('log', logContent);
     restoreLastSession();
 }
 
