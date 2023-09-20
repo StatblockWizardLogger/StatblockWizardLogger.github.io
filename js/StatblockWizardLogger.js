@@ -18,20 +18,9 @@ let restoring = false;
 //#region initialize
 function startLogger() {
     if (canStartLogger()) {
-        // allow dropping of .statblockwizard.svg or .statblockwizard.log.html file
-        window.addEventListener('dragover', (event) => {
-            event.preventDefault();
-        });
-        window.addEventListener('drop', (event) => {
-            if (event.dataTransfer.files.length == 1) {
-                var fr = new FileReader();
-                fr.onload = function () { processSVGorHTMLfile(fr.result) }
-                fr.readAsText(event.dataTransfer.files[0]);
-            }
-            event.preventDefault();
-        });
-
+        listenToDrop();
         createControls();
+        setFocus();
     };
 }
 
@@ -46,6 +35,26 @@ function canStartLogger() {
     return false
 }
 
+function listenToDrop() {
+    // allow dropping of .statblockwizard.svg or .statblockwizard.log.html file
+    window.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+    window.addEventListener('drop', (event) => {
+        if (event.dataTransfer.files.length == 1) {
+            var fr = new FileReader();
+            fr.onload = function () { processSupportedFile(fr.result) }
+            let fileName = event.dataTransfer.files[0].name;
+            if (fileTypeSupported(fileName)) {
+                fr.readAsText(event.dataTransfer.files[0]);
+            } else {
+                alert(`Unsupported file type: ${fileName.substring(fileName.indexOf('.'))}`);
+            }
+        }
+        event.preventDefault();
+    });
+}
+
 function createControls() {
     let c = document.getElementById('Controls');
     c.innerHTML = null;
@@ -55,21 +64,11 @@ function createControls() {
     addControlsOpenSVG(c);
     addControlsRestoreLastSession(c);
     addNewSessionFromRestoredCurrent(c);
-
-    setFocus();
 }
 
 function setFocus() {
     let t = document.getElementById('textinput');
     if (t) { t.focus(); };
-}
-
-function processSVGorHTMLfile(fileContent) {
-    let svg = fileContent.indexOf('<svg ');
-    let html = fileContent.indexOf('<html ');
-
-    if (svg >= 0 && html < 0) processSVGFile(fileContent);
-    if (svg > html && html >= 0) processHTMLFile(fileContent);
 }
 //#endregion initialize
 
@@ -169,7 +168,6 @@ function getActions() {
 }
 
 function getSectionData(s, caption, prefix) {
-
     resetSectionIDs();
 
     if (s.length > 0) {
@@ -219,7 +217,7 @@ function getSectionData(s, caption, prefix) {
                     currentKeywordHandled = true;
                     break;
                 case 'StatblockWizard-list-spells5e':
-                    createClickableSpellsSpan(l[i]);
+                    createClickableSpellsSpan(l[i], caption);
                     currentKeywordHandled = true;
                     break;
                 default:
@@ -296,7 +294,6 @@ function createKeywordClickableDiv(fromelement, caption, keyword) {
 function newClickableDiv(caption, keyword) {
     let d = document.createElement('div');
     d.classList.add('selectable');
-    // D.id = CreateID('click', NewClickID());
     d.addEventListener('click', () => {
         addLogLine((caption != keyword) ? `${caption}: ${keyword.replace(':', '.')}` : `${caption}.`);
     });
@@ -313,7 +310,7 @@ function newClickableSpan(content, message) {
     return (s);
 }
 
-function createClickableSpellsSpan(fromelement) {
+function createClickableSpellsSpan(fromelement, caption) {
     // fromelement is a dl. Spell levels are in a dt element;
     // nextElementsibling will be the matching dd.
     // In the dd are spell names, each enclosed in a span(class=StatblockWizard-spell)
@@ -326,7 +323,7 @@ function createClickableSpellsSpan(fromelement) {
             spellnames[n].classList.add('selectable');
             let spelltext = sanitizeKeyword(spellnames[n].innerText);
             spellnames[n].addEventListener('click', () => {
-                addLogLine(`Casts ${spelllevelname} ${spelltext}.`);
+                addLogLine(`${(caption == 'Uses special trait') ? '' : `${caption}: `}Casts ${spelllevelname} ${spelltext}.`);
             });
         }
     }
@@ -376,7 +373,7 @@ function getSessionNo() {
 function setSessionNo(sessionNo) {
     logger.setAttribute('sessionno', sessionNo);
     logger.firstElementChild.innerText = `LOG #${sessionNo}`;
-    if (sessionNo > 1) addLogLine(`Playing ${statblockName}. ${getScoreText()}`, { bold: true });
+    if (sessionNo >= 1 && statblockName) addLogLine(`Playing ${statblockName}. ${getScoreText()}`, { bold: true });
 }
 
 function getStatusFromLog() {
@@ -519,9 +516,9 @@ function addToClassList(to, css) {
 }
 
 function getScoreText() {
-    let scoretext = (currentHP > 0) ? `Current hit points: ${currentHP}` : (maxHP > 0) ? `${statblockName} is unconscious (0 HP)` : `${statblockName} ded. Really.`;
-    if (currentTempHP > 0) scoretext = `${scoretext}, Temporary hit points: ${currentTempHP}`;
-    if ((currentHP > 0) && (currentTempHP > 0)) scoretext = `${scoretext}. Total hit points: ${currentHP + currentTempHP}.`;
+    let scoretext = (currentHP > 0) ? `Current hit points: ${currentHP}.` : (maxHP > 0) ? `${statblockName} is unconscious (0 hit points).` : `${statblockName} is dead.`;
+    if (currentTempHP > 0) scoretext = `${scoretext} Temporary hit points: ${currentTempHP}.`;
+    if ((currentHP > 0) && (currentTempHP > 0)) scoretext = `${scoretext} Total hit points: ${currentHP + currentTempHP}.`;
     return scoretext;
 }
 
@@ -667,6 +664,18 @@ function addNewSessionFromRestoredCurrent(controls) {
 //#endregion Controls
 
 //#region tooling
+function fileTypeSupported(name) {
+    return (name.toLocaleLowerCase().endsWith('.statblockwizard.svg') || name.toLocaleLowerCase().endsWith('.statblockwizard.log.html'))
+}
+
+function processSupportedFile(fileContent) {
+    let svg = fileContent.indexOf('<svg ');
+    let html = fileContent.indexOf('<html ');
+
+    if (svg >= 0 && html < 0) processSVGFile(fileContent);
+    if (svg > html && html >= 0) processHTMLFile(fileContent);
+}
+
 function inputButton(text, accessKey, alt, classname) {
     let input = document.createElement('input');
     input.setAttribute("type", "button");

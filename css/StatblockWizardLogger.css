@@ -65,6 +65,17 @@ img.logo {
     text-align-last: center;
 }
 
+.note {
+    font-size: small;
+}
+
+.closetonext {
+    margin-bottom: 2px;
+}
+.closetoprevious {
+    margin-top: 2px;
+}
+
 a,
 a:visited,
 a:active,
