@@ -82,12 +82,22 @@ function processSVGFile(fileContent) {
 }
 
 function goLogger() {
+    let prevStatblockName = statblockName;
+    let prevMaxHP = maxHP;
+    let prevCurrentHP = currentHP;
+    let prevTempHP = currentTempHP;
     resetClickIDs();
-    statblockName = getStatblockName();
-    if (statblockName) { addLogLine(statblockName + ' enters.', { bold: true }) };
     getFeatures();
     getActions();
-    setFocus()
+    statblockName = getStatblockName();
+    if (statblockName != prevStatblockName) {
+        addLogLine(`${statblockName} enters, having ${currentHP} hit points.`);
+    } else {
+        currentHP = prevCurrentHP;
+        currentTempHP = prevTempHP;
+        if (maxHP > prevMaxHP) { addLogLine(`${statblockName} has ${maxHP} as new maximum for hit points.`); }
+        addScoreLogLine();
+    };
 }
 
 function getStatblockName() {
@@ -393,7 +403,6 @@ function setMaxHP(hp) {
     currentHP = hp;
     currentTempHP = 0;
     setStatusInLog();
-    addLogLine(`${statblockName} has ${currentHP} hit points.`);
 }
 
 function setHP(newhp, newtemphp) {
