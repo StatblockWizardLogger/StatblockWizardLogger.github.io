@@ -77,6 +77,7 @@ function processSVGFile(fileContent) {
     if (fileContent) {
         db.setKeyValue('statblock', fileContent);
         viewer.innerHTML = fileContent;
+        makeStatblockTransparent();
         goLogger();
     }
 }
@@ -683,6 +684,13 @@ function processSupportedFile(fileContent) {
 
     if (svg >= 0 && html < 0) processSVGFile(fileContent);
     if (svg > html && html >= 0) processHTMLFile(fileContent);
+}
+
+function makeStatblockTransparent() {
+    let d = document.getElementsByClassName('StatblockWizard');
+    if (d.length > 0) {
+        d[0].classList.add('StatblockWizard-Transparent');
+    }
 }
 
 function inputButton(text, accessKey, alt, classname) {
