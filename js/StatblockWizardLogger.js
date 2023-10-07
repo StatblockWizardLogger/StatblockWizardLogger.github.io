@@ -77,7 +77,7 @@ function processSVGFile(fileContent) {
     if (fileContent) {
         db.setKeyValue('statblock', fileContent);
         viewer.innerHTML = fileContent;
-        makeStatblockTransparent();
+        makeStatblockTransparent(document);
         goLogger();
     }
 }
@@ -686,8 +686,8 @@ function processSupportedFile(fileContent) {
     if (svg > html && html >= 0) processHTMLFile(fileContent);
 }
 
-function makeStatblockTransparent() {
-    let d = document.getElementsByClassName('StatblockWizard');
+function makeStatblockTransparent(source) {
+    let d = source.getElementsByClassName('StatblockWizard');
     if (d.length > 0) {
         d[0].classList.add('StatblockWizard-Transparent');
     }
@@ -731,11 +731,11 @@ function createLogDownloadDocument(htmldoc = new Document) {
     let style = downloadedLogStyle() + loggerStyle();
     htmldoc.head.insertAdjacentHTML("beforeend", `<style>${style}</style>`);
 
-    let body = `<h1 class="appinfo">${statblockName} Log #${getSessionNo()} Transcript</h1>` +
+    let body = `<h1 class="appinfo">${statblockName} Session Transcript</h1>` +
         '<div id="Statblock" class="appinfo">' + db.getKeyValue('statblock') + '</div>' +
         db.getKeyValue('log') + '<!--endlog-->';
     htmldoc.body.innerHTML = body;
-
+    makeStatblockTransparent(htmldoc);
     return htmldoc;
 }
 
