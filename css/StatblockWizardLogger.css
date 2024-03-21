@@ -3,7 +3,7 @@
 :root {
     --fore: #020202;
     --back: #fdfdfd;
-    --statblockback: #ffffff;
+    --statblockback: #fdf7df;
     --alternateback: #dfdfdf;
     --key: #a00000;
     --link: #4f4f4f;
@@ -14,14 +14,13 @@
     :root {
         --fore: #fdfdfd;
         --back: #404040;
-        --statblockback: #7f7f7f;
+        --statblockback: #c0c0c0;
         --alternateback: #020202;
-        --key: #d00000;
+        --key: #a00000;
         --link: #afafaf;
         --selectedback: pink;
         --selectedfore: darkblue;
     }
-        
 }
 
 body {
