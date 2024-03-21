@@ -18,8 +18,8 @@ function loggerStyle() {
 }
 
 function downloadedLogStyle() {
-    return `:root{--fore:#020202;--back:#fdfdfd;--statblockback:#ffffff;}
-@media(prefers-color-scheme:dark){:root{--fore:#fdfdfd;--back:#404040;--statblockback: #7f7f7f;}}
+    return `:root{--fore:#020202;--back:#fdfdfd;--statblockback:#fdf7df;}
+@media(prefers-color-scheme:dark){:root{--fore:#fdfdfd;--back:#404040;--statblockback: #c0c0c0;}}
 *{margin:0;padding:0;}
 body{font-family:Georgia,'Times New Roman',Times,serif;text-align:left;color:var(--fore);font-size:4mm;background-color:var(--back);max-width:800px;}
 div#Log{font-size:16px;}
@@ -91,7 +91,6 @@ function demoDataSVG() {
 :root {
     --StatblockWizardmonstername: #a00000;
     --StatblockWizardscreenborder: #a00000;
-    --StatblockWizardprintborder: #d3d3d3;
     --StatblockWizardtext: #020202;
 }
 

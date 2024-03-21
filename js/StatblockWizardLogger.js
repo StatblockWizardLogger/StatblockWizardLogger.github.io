@@ -77,7 +77,7 @@ function processSVGFile(fileContent) {
     if (fileContent) {
         db.setKeyValue('statblock', fileContent);
         viewer.innerHTML = fileContent;
-        makeStatblockTransparent(document);
+        removeStatblockTransparency(document);
         goLogger();
     }
 }
@@ -686,10 +686,10 @@ function processSupportedFile(fileContent) {
     if (svg > html && html >= 0) processHTMLFile(fileContent);
 }
 
-function makeStatblockTransparent(source) {
+function removeStatblockTransparency(source) {
     let d = source.getElementsByClassName('StatblockWizard');
     if (d.length > 0) {
-        d[0].classList.add('StatblockWizard-Transparent');
+        d[0].classList.remove('StatblockWizard-Transparent');
     }
 }
 
@@ -735,7 +735,7 @@ function createLogDownloadDocument(htmldoc = new Document) {
         '<div id="Statblock" class="appinfo">' + db.getKeyValue('statblock') + '</div>' +
         db.getKeyValue('log') + '<!--endlog-->';
     htmldoc.body.innerHTML = body;
-    makeStatblockTransparent(htmldoc);
+    removeStatblockTransparency(htmldoc);
     return htmldoc;
 }
 
